@@ -1,0 +1,28 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-brand-dark: #00150B;  
+  --color-brand: #00A413;            
+  --color-brand-light: #CFFFCD;
+  --color-brand-darkest: #005B31;   
+  
+  --color-accent: #00FF89;           
+  --color-accent-light: #E2FFEB;   
+  
+  --color-neutral-dark: #1c1c1c;   
+  --color-neutral-light: #f2f2f2;
+
+  --color-red-trash: #DB0F0F;
+  --color-yellow-trash: #DBB30F;
+  --color-blue-trash: #0F86DB;
+  --color-green-trash: #0FDB27;
+  --color-brown-trash: #653409;
+}
+
+body {
+  @apply bg-[var(--color-accent-light)];
+
+  font-family: "Irish Grover", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
