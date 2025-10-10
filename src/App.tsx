@@ -1,10 +1,16 @@
 import './styles/app.postcss';
+import { useState } from 'react';
+
 import { EcokidsDarkLogo } from './assets/images/logos/EcokidsDarkLogo';
 import { TrashIcon } from './assets/images/icons/TrashIcon';
 import RecyclingIcon from './assets/images/icons/RecyclingIcon.png';
 
+import { SelectGameModal } from './components/SelectGameModal';
+
 function App() {
   document.title = "EcoKids - Seja um pequeno herói!";
+
+  const [showModal, setShowModal] = useState(false);
 
   const trashTypes = [
     'DB0F0F', 'DBB30F', '0F86DB', '0FDB27', '653409'];
@@ -15,13 +21,13 @@ function App() {
 
       <section className='flex flex-col items-center gap-20'>
         <div className='flex flex-col gap-20'>
-          <a className="relative inline-block transition-all hover:scale-105" href="#">
+          <button className="relative inline-block transition-all hover:scale-105 hover:cursor-pointer" onClick={() => setShowModal(true)}>
             <img src={RecyclingIcon} alt="Ícone de Reciclagem" className="block h-40 mx-auto" />
 
             <p className="absolute inset-0 flex items-center justify-center font-semibold px-2 py-1 rounded text-[var(--color-brand-dark)] text-5xl">
               Jogar
             </p>
-          </a>
+          </button>
 
           <div className='flex flex-col gap-6 mx-auto'>
             <a href="" className='bg-[var(--color-brand)] text-[var(--color-accent-light)] py-3 px-12 rounded-xl w-46 text-center text-xl transition-all hover:bg-[var(--color-brand)]/80 hover:scale-103'>Aprender</a>
@@ -43,6 +49,8 @@ function App() {
           </div>
         </div>
       </section>
+
+      <SelectGameModal showModal={showModal} setShowModal={setShowModal} />
     </main>
   )
 }
