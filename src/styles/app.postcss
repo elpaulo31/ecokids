@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-brand-dark: #00150B;  
   --color-brand: #00A413;            
@@ -20,7 +22,7 @@
 }
 
 body {
-  @apply bg-[var(--color-accent-light)];
+  @apply w-screen h-screen bg-[var(--color-accent-light)] dark:bg-[var(--color-brand-dark)] transition-colors duration-500;
 
   font-family: "Irish Grover", system-ui;
   font-weight: 400;
