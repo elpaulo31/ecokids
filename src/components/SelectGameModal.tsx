@@ -1,12 +1,32 @@
 import SelectGame from './../assets/images/general/selectGame.png';
 
+import { useNavigate } from 'react-router-dom';
+
 interface SelectGameModalProps {
   showModal: boolean;
+  gameInfo: {
+    playerName?: string;
+    selectedGame?: string;
+  };
+  setGameInfo: (info: { playerName?: string; selectedGame?: string }) => void;
   setShowModal: (show: boolean) => void;
+  setShowToast?: (toast: {
+    show: boolean;
+    typeToast?: 'success' | 'info' | 'error';
+    message?: string;
+  }) => void;
 }
 
-export const SelectGameModal = ({ showModal, setShowModal }: SelectGameModalProps) => {
+export const SelectGameModal = ({
+  showModal,
+  setShowModal,
+  gameInfo,
+  setGameInfo,
+  setShowToast,
+}: SelectGameModalProps) => {
   if (!showModal) return null;
+
+  const navigate = useNavigate();
 
   return (
     <div
@@ -19,21 +39,16 @@ export const SelectGameModal = ({ showModal, setShowModal }: SelectGameModalProp
                    flex flex-col items-center gap-6 shadow-lg text-white"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 className="text-xl font-semibold text-center">
-          Escolha seu jogo
-        </h2>
+        <h2 className="text-xl font-semibold text-center">Escolha seu jogo</h2>
 
         <button
           type="button"
-          className="flex flex-col items-center gap-2 
+          className={`${gameInfo.selectedGame === 'separe-o-lixo' ? 'bg-white/20' : ''} flex flex-col items-center gap-2 
                      bg-white/10 hover:bg-white/20 transition-all py-4 px-8 rounded-xl 
-                     text-white hover:cursor-pointer w-full"
+                     text-white hover:cursor-pointer w-full`}
+          onClick={() => setGameInfo({ ...gameInfo, selectedGame: 'separe-o-lixo' })}
         >
-          <img
-            src={SelectGame}
-            alt="Jogo Separe o Lixo"
-            className="w-24 h-24 object-contain"
-          />
+          <img src={SelectGame} alt="Jogo Separe o Lixo" className="w-24 h-24 object-contain" />
           <span className="font-medium">Separe o Lixo</span>
         </button>
 
@@ -49,9 +64,26 @@ export const SelectGameModal = ({ showModal, setShowModal }: SelectGameModalProp
             className="w-full bg-white/10 text-white placeholder-gray-200
                        border border-white/20 rounded-md p-2 focus:outline-none
                        focus:ring-2 focus:ring-white/40 transition-all"
+            onBlur={(e) => {
+              setGameInfo({ ...gameInfo, playerName: e.target.value });
+            }}
           />
 
-          <button className='bg-[var(--color-accent-light)] text-[var(--color-brand)] cursor-pointer py-2 px-6 rounded-xl w-full text-center text-lg font-medium transition-all hover:scale-103 mt-4'> 
+          <button
+            className="bg-[var(--color-accent-light)] text-[var(--color-brand)] cursor-pointer py-2 px-6 rounded-xl w-full text-center text-lg font-medium transition-all hover:scale-103 mt-4"
+            onClick={() => {
+              if (gameInfo.playerName && gameInfo.selectedGame) {
+                setShowModal(false);
+                navigate('/ecokids-game');
+              } else {
+                setShowToast?.({
+                  show: true,
+                  typeToast: 'error',
+                  message: 'Por favor, preencha seu nome e selecione um jogo.',
+                });
+              }
+            }}
+          >
             Iniciar Jogo
           </button>
         </div>
@@ -69,6 +101,3 @@ export const SelectGameModal = ({ showModal, setShowModal }: SelectGameModalProp
     </div>
   );
 };
-
-
-
