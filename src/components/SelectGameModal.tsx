@@ -1,5 +1,5 @@
 import SelectGame from './../assets/images/general/selectGame.png';
-
+import { usePlayerContext } from '../contexts/PlayerContext';
 import { useNavigate } from 'react-router-dom';
 
 interface SelectGameModalProps {
@@ -27,6 +27,7 @@ export const SelectGameModal = ({
   if (!showModal) return null;
 
   const navigate = useNavigate();
+  const { data, setData } = usePlayerContext();
 
   return (
     <div
@@ -65,7 +66,9 @@ export const SelectGameModal = ({
                        border border-white/20 rounded-md p-2 focus:outline-none
                        focus:ring-2 focus:ring-white/40 transition-all"
             onBlur={(e) => {
-              setGameInfo({ ...gameInfo, playerName: e.target.value });
+              const value = e.target.value;
+              setGameInfo({ ...gameInfo, playerName: value });
+              setData({ ...data, playerName: value });
             }}
           />
 

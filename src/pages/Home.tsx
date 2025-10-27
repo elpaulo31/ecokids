@@ -27,7 +27,7 @@ export const Home = () => {
     selectedGame: undefined,
   });
 
-  const trashTypes = ['DB0F0F', 'DBB30F', '0F86DB', '0FDB27', '653409'];
+  const trashTypes = ['#0000FF', '#FF0000', '#008000', '#FFFF00', '#8B4513', '#808080'];
 
   return (
     <main className="h-full w-full py-20 px-10 flex justify-center relative bg-[var(--color-accent-light)] dark:bg-[var(--color-brand-dark)] transition-colors duration-500">
@@ -70,7 +70,7 @@ export const Home = () => {
               <TrashIcon
                 key={index}
                 svgClass="inline-block mx-2 cursor-pointer hover:scale-110 transition-transform"
-                color={`#${color}`}
+                color={`${color}`}
               />
             ))}
           </div>
