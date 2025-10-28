@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TrashIcon } from '../assets/images/icons/TrashIcon';
 import { CongratulationsEcokids } from '../components/CongratulationsEcokids';
 import { usePlayerContext } from '../contexts/PlayerContext';
@@ -36,15 +36,38 @@ export function EcokidsGame() {
     { emoji: '🧻', tipo: 'rejeito' },
   ];
 
+  const { data, setData } = usePlayerContext();
+
   const [trashEmojis, setTrashEmojis] = useState(initialEmojis);
   const [selectedEmoji, setSelectedEmoji] = useState<{ emoji: string; tipo: string } | null>(null);
   const [score, setScore] = useState(0);
+  const [startTime, setStartTime] = useState<number | null>(null);
+  const [finalScore, setFinalScore] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (trashEmojis.length === initialEmojis.length) {
+      setStartTime(Date.now());
+    }
+  }, []);
+
+  useEffect(() => {
+    if (trashEmojis.length === 0 && startTime) {
+      const end = Date.now();
+      const timeSeconds = (end - startTime) / 1000;
+
+      const normalized = Math.max(40, 100 - ((timeSeconds - 30) / 120) * 100);
+      const final = Math.min(100, Math.round(normalized));
+
+      setFinalScore(final);
+      setData({ ...data, score: final });
+    }
+  }, [trashEmojis]);
 
   const handleTrashClick = (trashTipo: string) => {
     if (selectedEmoji) {
       if (selectedEmoji.tipo === trashTipo) {
-        setTrashEmojis(trashEmojis.filter((e) => e.emoji !== selectedEmoji.emoji));
-        setScore(score + 1);
+        setTrashEmojis((prev) => prev.filter((e) => e.emoji !== selectedEmoji.emoji));
+        setScore((prev) => prev + 1);
       }
       setSelectedEmoji(null);
     }
@@ -95,7 +118,8 @@ export function EcokidsGame() {
       </div>
 
       {trashEmojis.length === 0 &&
-        CongratulationsEcokids(usePlayerContext().data.playerName, score)}
+        finalScore !== null &&
+        CongratulationsEcokids(data.playerName, data.score, Math.round((Date.now() - (startTime || 0)) / 1000))}
     </div>
   );
 }

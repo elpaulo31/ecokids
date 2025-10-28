@@ -5,6 +5,7 @@ import RecyclingIcon from './../assets/images/icons/RecyclingIcon.png';
 
 import { SelectGameModal } from './../components/SelectGameModal';
 import { Toast } from './../components/Toast';
+import { Link } from 'react-router';
 
 export const Home = () => {
   document.title = 'EcoKids - Seja um pequeno herói!';
@@ -45,12 +46,12 @@ export const Home = () => {
           </button>
 
           <div className="flex flex-col gap-6 mx-auto">
-            <a
-              href=""
+            <Link
+              to="/aprender-ecokids"
               className="bg-[var(--color-brand)] text-[var(--color-accent-light)] py-3 px-12 rounded-xl w-46 text-center text-xl transition-all hover:bg-[var(--color-brand)]/80 hover:scale-103"
             >
               Aprender
-            </a>
+            </Link>
             <a
               href=""
               className="bg-[var(--color-brand)] text-[var(--color-accent-light)] py-3 px-12 rounded-xl w-46 text-center text-xl transition-all hover:bg-[var(--color-brand)]/80 hover:scale-103"
