@@ -74,7 +74,7 @@ export function EcokidsGame() {
   };
 
   return (
-    <div className="px-4 py-6 mx-auto flex flex-col items-center gap-8">
+    <main className="px-4 py-6 mx-auto flex flex-col items-center gap-8">
       <h1 className="text-[var(--color-primary)] dark:text-[var(--color-accent-light)] text-lg sm:text-xl text-center">
         Ajude a colocar o lixo no lugar certo!
       </h1>
@@ -119,7 +119,11 @@ export function EcokidsGame() {
 
       {trashEmojis.length === 0 &&
         finalScore !== null &&
-        CongratulationsEcokids(data.playerName, data.score, Math.round((Date.now() - (startTime || 0)) / 1000))}
-    </div>
+        CongratulationsEcokids(
+          data.playerName,
+          data.score,
+          Math.round((Date.now() - (startTime || 0)) / 1000),
+        )}
+    </main>
   );
 }

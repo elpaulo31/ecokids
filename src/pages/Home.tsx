@@ -52,12 +52,12 @@ export const Home = () => {
             >
               Aprender
             </Link>
-            <a
-              href=""
+            <Link
+              to="/conquistas"
               className="bg-[var(--color-brand)] text-[var(--color-accent-light)] py-3 px-12 rounded-xl w-46 text-center text-xl transition-all hover:bg-[var(--color-brand)]/80 hover:scale-103"
             >
               Conquistas
-            </a>
+            </Link>
           </div>
         </div>
 
