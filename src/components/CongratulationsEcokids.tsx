@@ -8,7 +8,7 @@ export const CongratulationsEcokids = (player: string, score: number, time: numb
         <p className="text-xl">Você fez {score} pontos!</p>
         <p className="text-xl">Tempo: {time} segundos</p>
 
-        <Link to="/score-ecokids">
+        <Link to="/pontuacao-ecokids">
           <button className="mt-4 px-6 py-4 text-xl bg-green-700 text-white rounded cursor-pointer transition-all hover:bg-green-600">
             Ir para pontuação
           </button>

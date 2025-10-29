@@ -1,10 +1,12 @@
-interface InfoIconProps {
+export function InfoIcon({
+  width = 24,
+  height = 24,
+  color = '#FACC15',
+}: {
   width?: number;
   height?: number;
   color?: string;
-}
-
-export function InfoIcon({ width = 24, height = 24, color = '#FACC15' }: InfoIconProps) {
+}) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

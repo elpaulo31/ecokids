@@ -1,10 +1,12 @@
-interface SuccessInfoProps {
+export const SuccessIcon = ({
+  width = 24,
+  height = 24,
+  color = '#22C55E',
+}: {
   width?: number;
   height?: number;
   color?: string;
-}
-
-export function SuccessIcon({ width = 24, height = 24, color = '#22C55E' }: SuccessInfoProps) {
+}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -24,4 +26,4 @@ export function SuccessIcon({ width = 24, height = 24, color = '#22C55E' }: Succ
       />
     </svg>
   );
-}
+};

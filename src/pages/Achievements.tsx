@@ -2,8 +2,8 @@ import { FinishIcon } from '../assets/images/icons/FinishIcon';
 import { ScoreIcon } from '../assets/images/icons/ScoreIcon';
 import { TimerIcon } from '../assets/images/icons/TimerIcon';
 
-export function Conquistas() {
-  const conquistas = [
+export const Achievements = () => {
+  const achievements = [
     {
       icon: <ScoreIcon width={70} height={70} color="#16a34a" />,
       title: 'Reciclador Nota 100!',
@@ -23,24 +23,24 @@ export function Conquistas() {
 
   return (
     <main className="flex flex-col p-10">
-      <h1 className="text-[var(--color-brand-darkest)] text-3xl md:text-4xl font-bold mb-10">
+      <h1 className="text-[var(--color-brand-darkest)] text-3xl md:text-4xl font-bold mb-3 md:mb-10 dark:text-[var(--color-brand-light)]">
         Conquistas
       </h1>
 
       <section className="w-full max-w-3xl flex flex-col gap-6">
-        {conquistas.map((conquista, index) => (
+        {achievements.map((achievement, index) => (
           <div
             key={index}
             className="flex flex-col items-center text-center md:text-left gap-6 md:gap-8 p-6 border border-[var(--color-gray-light)] rounded-2xl bg-white shadow-md hover:shadow-lg transition-all md:flex-row duration-300 hover:scale-[1.02]"
           >
-            <div className="flex-shrink-0">{conquista.icon}</div>
+            <div className="flex-shrink-0">{achievement.icon}</div>
 
             <div className="flex flex-col justify-center">
               <h2 className="text-xl font-bold text-[var(--color-brand-darkest)] mb-2">
-                {conquista.title}
+                {achievement.title}
               </h2>
               <p className="text-[var(--color-gray-dark)] leading-relaxed">
-                {conquista.description}
+                {achievement.description}
               </p>
             </div>
           </div>
@@ -48,6 +48,4 @@ export function Conquistas() {
       </section>
     </main>
   );
-}
-
-
+};

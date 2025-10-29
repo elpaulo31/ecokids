@@ -1,10 +1,12 @@
-interface FinishIconProps {
+export const TimerIcon = ({
+  width = 256,
+  height = 256,
+  color = '#000000',
+}: {
   width?: number;
   height?: number;
   color?: string;
-}
-
-export function TimerIcon({ width = 256, height = 256, color = '#000000' }: FinishIconProps) {
+}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -60,4 +62,4 @@ export function TimerIcon({ width = 256, height = 256, color = '#000000' }: Fini
       />
     </svg>
   );
-}
+};

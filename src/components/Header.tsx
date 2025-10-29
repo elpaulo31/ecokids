@@ -10,7 +10,7 @@ export const Header = () => {
   );
 
   return (
-    <header className="w-screen flex items-center justify-between p-10 transition-colors duration-500">
+    <header className="w-screen flex items-center justify-between p-6 sm:p-10 transition-colors duration-500">
       <a href="/">
         <EcokidsDarkLogo
           primaryColor={darkMode ? '#0FDB27' : '#0FDB27'}
@@ -32,9 +32,9 @@ export const Header = () => {
         aria-label="Mudar tema"
       >
         {darkMode ? (
-          <DarkModeIcon svgClass="cursor-pointer h-8 w-8" color="#E2FFEB" />
+          <DarkModeIcon svgClass="cursor-pointer h-7 w-7" color="#E2FFEB" />
         ) : (
-          <LightModeIcon svgClass="cursor-pointer w-8 h-8" color="#005B31" />
+          <LightModeIcon svgClass="cursor-pointer w-7 h-7" color="#005B31" />
         )}
       </button>
     </header>

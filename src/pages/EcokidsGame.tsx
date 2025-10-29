@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
 import { TrashIcon } from '../assets/images/icons/TrashIcon';
+import { ScoreIcon } from '../assets/images/icons/ScoreIcon';
+import { TimerIcon } from '../assets/images/icons/TimerIcon';
+import { FinishIcon } from '../assets/images/icons/FinishIcon';
 import { CongratulationsEcokids } from '../components/CongratulationsEcokids';
 import { usePlayerContext } from '../contexts/PlayerContext';
 
-export function EcokidsGame() {
+export const EcokidsGame = () => {
   const trashTypes = [
     { color: '#0000FF', tipo: 'papel' },
     { color: '#FF0000', tipo: 'plástico' },
@@ -41,13 +44,33 @@ export function EcokidsGame() {
   const [trashEmojis, setTrashEmojis] = useState(initialEmojis);
   const [selectedEmoji, setSelectedEmoji] = useState<{ emoji: string; tipo: string } | null>(null);
   const [score, setScore] = useState(0);
+  const [errors, setErrors] = useState(0);
   const [startTime, setStartTime] = useState<number | null>(null);
   const [finalScore, setFinalScore] = useState<number | null>(null);
 
+  const achievements = [
+    {
+      icon: <ScoreIcon width={70} height={70} color="#16a34a" />,
+      title: 'Reciclador Nota 100!',
+      description: 'Coloque corretamente todos os itens nas suas lixeiras correspondentes.',
+      check: (score: number) => score === initialEmojis.length,
+    },
+    {
+      icon: <TimerIcon width={70} height={70} color="#2563eb" />,
+      title: 'Velocista Sustentável!',
+      description: 'Complete o jogo em menos de 1 minuto e mostre que você é rápido e eficiente!',
+      check: (_: number, time: number) => time < 60,
+    },
+    {
+      icon: <FinishIcon width={70} height={70} color="#facc15" />,
+      title: 'Campeão da Reciclagem!',
+      description: 'Finalize o jogo sem cometer nenhum erro. Um verdadeiro herói do meio ambiente!',
+      check: (_: number, __: number, errors: number) => errors === 0,
+    },
+  ];
+
   useEffect(() => {
-    if (trashEmojis.length === initialEmojis.length) {
-      setStartTime(Date.now());
-    }
+    setStartTime(Date.now());
   }, []);
 
   useEffect(() => {
@@ -57,9 +80,15 @@ export function EcokidsGame() {
 
       const normalized = Math.max(40, 100 - ((timeSeconds - 30) / 120) * 100);
       const final = Math.min(100, Math.round(normalized));
-
       setFinalScore(final);
-      setData({ ...data, score: final });
+
+      const unlocked = achievements.filter((a) => a.check(score, timeSeconds, errors));
+
+      setData({
+        ...data,
+        score: final,
+        achievements: unlocked.map((a) => a.title),
+      });
     }
   }, [trashEmojis]);
 
@@ -68,6 +97,8 @@ export function EcokidsGame() {
       if (selectedEmoji.tipo === trashTipo) {
         setTrashEmojis((prev) => prev.filter((e) => e.emoji !== selectedEmoji.emoji));
         setScore((prev) => prev + 1);
+      } else {
+        setErrors((prev) => prev + 1);
       }
       setSelectedEmoji(null);
     }
@@ -79,8 +110,8 @@ export function EcokidsGame() {
         Ajude a colocar o lixo no lugar certo!
       </h1>
 
-      <div className="text-lg font-bold px-4 py-2 rounded-xl shadow-md border-2 border-[var(--color-brand)] text-white bg-[var(--color-brand)] dark:bg-[var(--color-brand-darkest)] dark:text-[var(--color-accent-light)] transition-colors duration-500">
-        Pontuação: {score}
+      <div className="text-lg font-bold px-4 py-2 rounded-xl shadow-md border-2 border-[var(--color-brand)] text-white bg-[var(--color-brand)] dark:bg-[var(--color-brand-darkest)] transition-colors duration-500">
+        Acertos: {score}
       </div>
 
       <section className="h-[420px] max-h-[420px]">
@@ -126,4 +157,4 @@ export function EcokidsGame() {
         )}
     </main>
   );
-}
+};

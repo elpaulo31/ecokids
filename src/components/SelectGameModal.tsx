@@ -77,7 +77,7 @@ export const SelectGameModal = ({
             onClick={() => {
               if (gameInfo.playerName && gameInfo.selectedGame) {
                 setShowModal(false);
-                navigate('/ecokids-game');
+                navigate('/jogo-ecokids');
               } else {
                 setShowToast?.({
                   show: true,

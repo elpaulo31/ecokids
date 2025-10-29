@@ -1,10 +1,12 @@
-interface ErrorIconProps {
+export const ErrorIcon = ({
+  width = 24,
+  height = 24,
+  color = '#EF4444',
+}: {
   width?: number;
   height?: number;
   color?: string;
-}
-
-export function ErrorIcon({ width = 24, height = 24, color = '#EF4444' }: ErrorIconProps) {
+}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -19,4 +21,4 @@ export function ErrorIcon({ width = 24, height = 24, color = '#EF4444' }: ErrorI
       <line x1="17" y1="7" x2="7" y2="17" stroke={color} strokeWidth="2" strokeLinecap="round" />
     </svg>
   );
-}
+};

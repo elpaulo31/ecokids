@@ -1,4 +1,4 @@
-export function AprenderEcokids() {
+export const LearnEcokids = () => {
   const trashTypes = [
     {
       title: 'Lixo Orgânico',
@@ -85,4 +85,4 @@ export function AprenderEcokids() {
       </div>
     </main>
   );
-}
+};

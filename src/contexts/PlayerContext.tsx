@@ -2,14 +2,26 @@ import type { ReactNode } from 'react';
 import { createContext, useContext, useState } from 'react';
 
 interface PlayerContextType {
-  data: Record<string, any>;
-  setData: (newData: Record<string, any>) => void;
+  data: {
+    playerName: string;
+    score: number;
+    achievements: string[];
+  };
+  setData: (newData: { playerName: string; score: number; achievements: string[] }) => void;
 }
 
 const PlayerContext = createContext<PlayerContextType | undefined>(undefined);
 
 export function PlayerProvider({ children }: { children: ReactNode }) {
-  const [data, setData] = useState<Record<string, any>>({});
+  const [data, setData] = useState<{
+    playerName: string;
+    score: number;
+    achievements: string[];
+  }>({
+    playerName: '',
+    score: 0,
+    achievements: [],
+  });
 
   return <PlayerContext.Provider value={{ data, setData }}>{children}</PlayerContext.Provider>;
 }
