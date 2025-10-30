@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { EcokidsDarkLogo } from './../assets/images/logos/EcokidsDarkLogo';
 import { DarkModeIcon } from '../assets/images/icons/DarkModeIcon';
 import { LightModeIcon } from '../assets/images/icons/LightModeIcon';
+import { Link } from 'react-router';
 
 export const Header = () => {
   const [darkMode, setDarkMode] = useState(
@@ -10,13 +11,13 @@ export const Header = () => {
   );
 
   return (
-    <header className="w-screen flex items-center justify-between p-6 sm:p-10 transition-colors duration-500">
-      <a href="/">
+    <header className="w-screen flex items-center bg-[var(--color-accent-light)] dark:bg-[var(--color-brand-dark)] justify-between p-6 sm:p-10 transition-colors duration-500">
+      <Link to="/">
         <EcokidsDarkLogo
           primaryColor={darkMode ? '#0FDB27' : '#0FDB27'}
           secondaryColor={darkMode ? '#E2FFEB' : '#005B31'}
         />
-      </a>
+      </Link>
 
       <button
         onClick={() => {

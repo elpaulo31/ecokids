@@ -8,7 +8,7 @@ export const ScoreEcokids = () => {
   const { data } = usePlayerContext();
 
   return (
-    <main className="flex flex-col p-6 sm:p-10 transition-colors duration-500">
+    <main className="flex flex-col p-6 sm:p-10 transition-colors duration-500 bg-[var(--color-accent-light)] dark:bg-[var(--color-brand-dark)]">
       <h1 className="text-[var(--color-brand-darkest)] text-3xl md:text-4xl font-bold mb-3 md:mb-10 dark:text-[var(--color-accent-light)]">
         Pontuação
       </h1>

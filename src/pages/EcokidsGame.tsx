@@ -13,7 +13,6 @@ export const EcokidsGame = () => {
     { color: '#008000', tipo: 'vidro' },
     { color: '#FFFF00', tipo: 'metal' },
     { color: '#8B4513', tipo: 'orgânico' },
-    { color: '#808080', tipo: 'rejeito' },
   ];
 
   const initialEmojis = [
@@ -35,8 +34,7 @@ export const EcokidsGame = () => {
     { emoji: '🍼', tipo: 'plástico' },
     { emoji: '📦', tipo: 'papel' },
     { emoji: '📃', tipo: 'papel' },
-    { emoji: '🥛', tipo: 'vidro' },
-    { emoji: '🧻', tipo: 'rejeito' },
+    { emoji: '🥛', tipo: 'vidro' }
   ];
 
   const { data, setData } = usePlayerContext();
@@ -105,7 +103,7 @@ export const EcokidsGame = () => {
   };
 
   return (
-    <main className="px-4 py-6 mx-auto flex flex-col items-center gap-8">
+    <main className="px-4 py-6 mx-auto flex flex-col items-center gap-8 bg-[var(--color-accent-light)] dark:bg-[var(--color-brand-dark)]">
       <h1 className="text-[var(--color-primary)] dark:text-[var(--color-accent-light)] text-lg sm:text-xl text-center">
         Ajude a colocar o lixo no lugar certo!
       </h1>

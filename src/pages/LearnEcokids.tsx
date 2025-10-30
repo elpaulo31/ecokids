@@ -39,19 +39,11 @@ export const LearnEcokids = () => {
       color: '#008000',
       textColor: '#065F46',
       background: '#DCFCE7',
-    },
-    {
-      title: 'Rejeitos',
-      description:
-        'São materiais que não podem ser reciclados, como papel higiênico, guardanapos e fraldas. Devem ser descartados corretamente no lixo cinza.',
-      color: '#808080',
-      textColor: '#374151',
-      background: '#E5E7EB',
-    },
+    }
   ];
 
   return (
-    <main className="p-10 mb-6 mt-0 bg-green-50 rounded-2xl shadow-md text-center w-11/12 md:w-3/4 lg:w-1/2 lg:mb-0 lg:mt-20 mx-auto">
+    <main className="p-10 mb-10 mt-0 bg-green-50 rounded-2xl shadow-md text-center w-3/4 lg:mt-10 mx-auto">
       <h1 className="text-3xl font-bold text-green-700 mb-4">Aprender sobre Reciclagem</h1>
 
       <p className="text-lg text-gray-700 mb-8">

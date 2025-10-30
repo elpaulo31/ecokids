@@ -28,7 +28,7 @@ export const Home = () => {
     selectedGame: undefined,
   });
 
-  const trashTypes = ['#0000FF', '#FF0000', '#008000', '#FFFF00', '#8B4513', '#808080'];
+  const trashTypes = ['#0000FF', '#FF0000', '#008000', '#FFFF00', '#8B4513'];
 
   return (
     <main className="h-full w-full py-20 px-10 flex justify-center relative bg-[var(--color-accent-light)] dark:bg-[var(--color-brand-dark)] transition-colors duration-500">
