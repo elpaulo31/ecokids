@@ -28,3 +28,18 @@ body {
   font-weight: 400;
   font-style: normal;
 }
+
+@keyframes float-up {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -60px);
+  }
+}
+
+.animate-float-up {
+  animation: float-up 1s ease-out forwards;
+}
