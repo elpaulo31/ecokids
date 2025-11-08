@@ -9,8 +9,8 @@ export const EcokidsDarkLogo = ({
 }) => {
   return (
     <svg
-      width="146"
-      height="33"
+      width="120"
+      height="24"
       viewBox="0 0 146 33"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

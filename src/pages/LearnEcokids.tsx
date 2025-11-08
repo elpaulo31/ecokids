@@ -39,7 +39,7 @@ export const LearnEcokids = () => {
       color: '#008000',
       textColor: '#065F46',
       background: '#DCFCE7',
-    }
+    },
   ];
 
   return (

@@ -21,4 +21,3 @@ export const CongratulationsEcokids = ({ player, score }: CongratulationsEcokids
     </div>
   );
 };
-

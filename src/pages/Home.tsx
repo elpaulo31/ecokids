@@ -31,14 +31,14 @@ export const Home = () => {
   const trashTypes = ['#0000FF', '#FF0000', '#008000', '#FFFF00', '#8B4513'];
 
   return (
-    <main className="h-full w-full py-20 px-10 flex justify-center relative bg-[var(--color-accent-light)] dark:bg-[var(--color-brand-dark)] transition-colors duration-500">
+    <main className="h-full w-full px-10 pt-12 flex justify-center relative bg-[var(--color-accent-light)] dark:bg-[var(--color-brand-dark)] transition-colors duration-500 md:pt-0">
       <section className="flex flex-col items-center gap-20">
-        <div className="flex flex-col gap-20">
+        <div className="flex flex-col gap-14">
           <button
             className="relative inline-block transition-all hover:scale-105 hover:cursor-pointer"
             onClick={() => setShowModal(true)}
           >
-            <img src={RecyclingIcon} alt="Ícone de Reciclagem" className="block h-40 mx-auto" />
+            <img src={RecyclingIcon} alt="Ícone de Reciclagem" className="block h-32 mx-auto" />
 
             <p className="absolute inset-0 flex items-center justify-center font-medium px-2 py-1 rounded text-[var(--color-brand-dark)] dark:text-[var(--color-brand-light)] text-5xl">
               Jogar

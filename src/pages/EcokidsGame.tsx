@@ -18,16 +18,26 @@ export const EcokidsGame = () => {
   ];
 
   const initialEmojis = [
-    { emoji: '🍞', tipo: 'orgânico' }, { emoji: '🧴', tipo: 'plástico' },
-    { emoji: '🍎', tipo: 'orgânico' }, { emoji: '🍷', tipo: 'vidro' },
-    { emoji: '🍌', tipo: 'orgânico' }, { emoji: '🍶', tipo: 'vidro' },
-    { emoji: '🥩', tipo: 'orgânico' }, { emoji: '🍕', tipo: 'orgânico' },
-    { emoji: '🥫', tipo: 'metal' }, { emoji: '🛢️', tipo: 'metal' },
-    { emoji: '🥄', tipo: 'metal' }, { emoji: '🥤', tipo: 'plástico' },
-    { emoji: '🧃', tipo: 'plástico' }, { emoji: '🧂', tipo: 'orgânico' },
-    { emoji: '📰', tipo: 'papel' }, { emoji: '🍼', tipo: 'plástico' },
-    { emoji: '📦', tipo: 'papel' }, { emoji: '📃', tipo: 'papel' },
-    { emoji: '🥛', tipo: 'vidro' }, { emoji: '📚', tipo: 'papel' },
+    { emoji: '🍞', tipo: 'orgânico' },
+    { emoji: '🧴', tipo: 'plástico' },
+    { emoji: '🍎', tipo: 'orgânico' },
+    { emoji: '🍷', tipo: 'vidro' },
+    { emoji: '🍌', tipo: 'orgânico' },
+    { emoji: '🍶', tipo: 'vidro' },
+    { emoji: '🥩', tipo: 'orgânico' },
+    { emoji: '🍕', tipo: 'orgânico' },
+    { emoji: '🥫', tipo: 'metal' },
+    { emoji: '🛢️', tipo: 'metal' },
+    { emoji: '🥄', tipo: 'metal' },
+    { emoji: '🥤', tipo: 'plástico' },
+    { emoji: '🧃', tipo: 'plástico' },
+    { emoji: '🧂', tipo: 'orgânico' },
+    { emoji: '📰', tipo: 'papel' },
+    { emoji: '🍼', tipo: 'plástico' },
+    { emoji: '📦', tipo: 'papel' },
+    { emoji: '📃', tipo: 'papel' },
+    { emoji: '🥛', tipo: 'vidro' },
+    { emoji: '📚', tipo: 'papel' },
   ];
 
   const { data, setData } = usePlayerContext();
@@ -76,6 +86,10 @@ export const EcokidsGame = () => {
   }, []);
 
   useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = 0.1;
+    }
+
     if (gameOver) return;
     if (timeLeft <= 0) {
       handleGameOver();
@@ -104,7 +118,7 @@ export const EcokidsGame = () => {
     const accuracy = score / total;
     const timeBonus = timeLeft / 60;
     const penalty = errors * 3;
-    const rawScore = Math.round((accuracy * 100 + timeBonus * 20) - penalty);
+    const rawScore = Math.round(accuracy * 100 + timeBonus * 20 - penalty);
     const final = Math.max(0, Math.min(100, rawScore));
 
     setFinalScore(final);
@@ -150,36 +164,36 @@ export const EcokidsGame = () => {
   };
 
   return (
-    <main className="relative px-4 py-6 mx-auto flex flex-col items-center space-y-5 gap-6 bg-[var(--color-accent-light)] dark:bg-[var(--color-brand-dark)]">
+    <main className="relative px-0 py-5 mx-auto flex flex-col w-11/12 items-center gap-10 bg-transparent md:px-3 md:w-fit md:gap-6 md:py-1">
       <audio ref={audioRef} src="/background-music.mp3" autoPlay loop></audio>
       <audio ref={hitSoundRef} src="/accuracy.mp3"></audio>
 
       <button
         onClick={toggleSound}
-        className="absolute top-4 cursor-pointer right-4 p-2 rounded-full bg-white/70 dark:bg-black/40 shadow-md hover:scale-110 transition-transform"
+        className="absolute top-3 right-3 p-1.5 rounded-full bg-white shadow-md hover:scale-110 cursor-pointer transition-transform"
       >
         {isSoundOn ? (
-          <TurnOnSound svgClass="w-8 h-8" color="#16a34a" />
+          <TurnOnSound svgClass="w-6 h-6" color="#16a34a" />
         ) : (
-          <TurnOffSound svgClass="w-8 h-8" color="#ef4444" />
+          <TurnOffSound svgClass="w-6 h-6" color="#ef4444" />
         )}
       </button>
 
-      <h1 className="text-[var(--color-primary)] dark:text-[var(--color-accent-light)] text-lg sm:text-xl text-center font-semibold">
+      <h1 className="text-[var(--color-primary)] dark:text-[var(--color-accent-light)] text-base sm:text-lg text-center font-semibold">
         Ajude a colocar o lixo no lugar certo!
       </h1>
 
-      <div className="flex flex-wrap justify-center items-center gap-6">
-        <div className="text-lg font-bold px-4 py-2 rounded-xl shadow-md border-2 border-[var(--color-brand)] text-white bg-[var(--color-brand)] dark:bg-[var(--color-brand-darkest)]">
+      <div className="flex flex-wrap justify-center items-center gap-5">
+        <div className="text-base font-bold px-3 py-1.5 rounded-lg shadow-md border-2 border-[var(--color-brand)] text-white bg-[var(--color-brand)] dark:bg-[var(--color-brand-darkest)]">
           Acertos: {score}
         </div>
-        <div className="text-lg font-bold px-4 py-2 rounded-xl shadow-md border-2 border-blue-600 text-white bg-blue-600 dark:bg-blue-800 flex items-center gap-2">
+        <div className="text-base font-bold px-3 py-1.5 rounded-lg shadow-md border-2 border-blue-600 text-white bg-blue-600 dark:bg-blue-800 flex items-center gap-1.5">
           Tempo: {timeLeft}s
         </div>
       </div>
 
-      <section className="h-[420px] max-h-[420px]">
-        <div className="grid grid-cols-4 h-full lg:grid-cols-5 gap-2 sm:gap-3">
+      <section className="max-h-full h-full md:h-[340px] md:max-h-[340px]">
+        <div className="grid grid-cols-4 h-full items-center justify-center lg:grid-cols-5 gap-1.5 sm:gap-2">
           {trashEmojis.map((item, index) => (
             <div
               key={index}
@@ -187,7 +201,7 @@ export const EcokidsGame = () => {
                 selectedEmoji?.emoji === item.emoji
                   ? 'scale-110 bg-[var(--color-brand-darkest)] rounded-md'
                   : ''
-              } w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 m-1 rounded-lg flex items-center justify-center text-3xl sm:text-4xl cursor-pointer hover:scale-110 transition-transform`}
+              } w-20 h-16 rounded-md flex items-center justify-center text-2xl sm:text-3xl cursor-pointer hover:scale-110 transition-transform`}
               onClick={() => setSelectedEmoji(item)}
             >
               {item.emoji}
@@ -196,18 +210,18 @@ export const EcokidsGame = () => {
         </div>
       </section>
 
-      <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-6 mt-3">
+      <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8 mt-2">
         {trashTypes.map((trash, index) => (
           <div
             key={index}
-            className="flex flex-col items-center gap-1"
+            className="flex flex-col items-center gap-0.5 cursor-pointer"
             onClick={(e) => handleTrashClick(trash.tipo, e)}
           >
             <TrashIcon
-              svgClass="inline-block w-8 h-8 sm:w-10 sm:h-10 mx-1 cursor-pointer hover:scale-110 transition-transform"
+              svgClass="inline-block w-6 h-6 sm:w-8 sm:h-8 mx-0.5 hover:scale-110 transition-transform"
               color={trash.color}
             />
-            <p className="text-lg">{trash.tipo}</p>
+            <p className="text-sm sm:text-base text text-[var(--color-primary)] dark:text-[var(--color-accent-light)]">{trash.tipo}</p>
           </div>
         ))}
       </div>
@@ -215,7 +229,7 @@ export const EcokidsGame = () => {
       {scoreEffects.map((fx) => (
         <span
           key={fx.id}
-          className="absolute z-50 text-green-500 font-bold text-5xl animate-float-up pointer-events-none"
+          className="absolute z-50 text-green-500 font-bold text-3xl animate-float-up pointer-events-none"
           style={{
             left: fx.x,
             top: fx.y,
@@ -232,10 +246,3 @@ export const EcokidsGame = () => {
     </main>
   );
 };
-
-
-
-
-
-
-

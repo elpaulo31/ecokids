@@ -34,9 +34,9 @@ export const Header = () => {
         aria-label="Mudar tema"
       >
         {darkMode ? (
-          <DarkModeIcon svgClass="cursor-pointer h-7 w-7" color="#E2FFEB" />
+          <DarkModeIcon svgClass="cursor-pointer h-6 w-6" color="#E2FFEB" />
         ) : (
-          <LightModeIcon svgClass="cursor-pointer w-7 h-7" color="#005B31" />
+          <LightModeIcon svgClass="cursor-pointer w-6 h-6" color="#005B31" />
         )}
       </button>
     </header>
