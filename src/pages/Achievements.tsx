@@ -22,7 +22,7 @@ export const Achievements = () => {
   ];
 
   return (
-    <main className="flex flex-col p-10 bg-[var(--color-accent-light)] dark:bg-[var(--color-brand-dark)]">
+    <main className="flex flex-col p-10">
       <h1 className="text-[var(--color-brand-darkest)] text-3xl md:text-4xl font-bold mb-3 md:mb-10 dark:text-[var(--color-brand-light)]">
         Conquistas
       </h1>
