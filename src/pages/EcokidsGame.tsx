@@ -18,26 +18,31 @@ export const EcokidsGame = () => {
   ];
 
   const initialEmojis = [
+    { emoji: '🍌', tipo: 'orgânico' },
+    { emoji: '🍎', tipo: 'orgânico' },
+    { emoji: '🥕', tipo: 'orgânico' },
+    { emoji: '🌽', tipo: 'orgânico' },
     { emoji: '🍞', tipo: 'orgânico' },
     { emoji: '🧴', tipo: 'plástico' },
-    { emoji: '🍎', tipo: 'orgânico' },
-    { emoji: '🍷', tipo: 'vidro' },
-    { emoji: '🍌', tipo: 'orgânico' },
-    { emoji: '🍶', tipo: 'vidro' },
-    { emoji: '🥩', tipo: 'orgânico' },
-    { emoji: '🍕', tipo: 'orgânico' },
-    { emoji: '🥫', tipo: 'metal' },
-    { emoji: '🛢️', tipo: 'metal' },
-    { emoji: '🥄', tipo: 'metal' },
     { emoji: '🥤', tipo: 'plástico' },
     { emoji: '🧃', tipo: 'plástico' },
-    { emoji: '🧂', tipo: 'orgânico' },
-    { emoji: '📰', tipo: 'papel' },
     { emoji: '🍼', tipo: 'plástico' },
-    { emoji: '📦', tipo: 'papel' },
-    { emoji: '📃', tipo: 'papel' },
+    { emoji: '🍶', tipo: 'vidro' },
     { emoji: '🥛', tipo: 'vidro' },
+    { emoji: '🫙', tipo: 'vidro' },
+    { emoji: '🥫', tipo: 'metal' },
+    { emoji: '🥄', tipo: 'metal' },
+    { emoji: '🪙', tipo: 'metal' },
+    { emoji: '🔔', tipo: 'metal' },
+    { emoji: '📰', tipo: 'papel' },
+    { emoji: '📦', tipo: 'papel' },
     { emoji: '📚', tipo: 'papel' },
+    { emoji: '📄', tipo: 'papel' },
+    { emoji: '🧻', tipo: 'papel' },
+    { emoji: '🍇', tipo: 'orgânico' },
+    { emoji: '🪥', tipo: 'plástico' },
+    { emoji: '🔧', tipo: 'metal' },
+    { emoji: '📔', tipo: 'papel' },
   ];
 
   const { data, setData } = usePlayerContext();
@@ -183,7 +188,7 @@ export const EcokidsGame = () => {
         Ajude a colocar o lixo no lugar certo!
       </h1>
 
-      <div className="flex flex-wrap justify-center items-center gap-5">
+      <div className="flex flex-wrap justify-center items-center gap-7">
         <div className="text-base font-bold px-3 py-1.5 rounded-lg shadow-md border-2 border-[var(--color-brand)] text-white bg-[var(--color-brand)] dark:bg-[var(--color-brand-darkest)]">
           Acertos: {score}
         </div>
@@ -192,7 +197,7 @@ export const EcokidsGame = () => {
         </div>
       </div>
 
-      <section className="max-h-full h-full md:h-[340px] md:max-h-[340px]">
+      <section className="max-h-full h-full md:h-[380px] md:max-h-[380px]">
         <div className="grid grid-cols-4 h-full items-center justify-center lg:grid-cols-5 gap-1.5 sm:gap-2">
           {trashEmojis.map((item, index) => (
             <div
@@ -221,7 +226,9 @@ export const EcokidsGame = () => {
               svgClass="inline-block w-6 h-6 sm:w-8 sm:h-8 mx-0.5 hover:scale-110 transition-transform"
               color={trash.color}
             />
-            <p className="text-sm sm:text-base text text-[var(--color-primary)] dark:text-[var(--color-accent-light)]">{trash.tipo}</p>
+            <p className="text-sm sm:text-base text text-[var(--color-primary)] dark:text-[var(--color-accent-light)]">
+              {trash.tipo}
+            </p>
           </div>
         ))}
       </div>

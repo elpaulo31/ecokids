@@ -31,7 +31,7 @@ export const Home = () => {
   const trashTypes = ['#0000FF', '#FF0000', '#008000', '#FFFF00', '#8B4513'];
 
   return (
-    <main className="h-full w-full px-10 pt-12 flex justify-center relative transition-colors duration-500 md:pt-0">
+    <main className="h-full w-full px-10 pt-16 flex justify-center relative transition-colors duration-500 md:pt-8">
       <section className="flex flex-col items-center gap-20">
         <div className="flex flex-col gap-14">
           <button

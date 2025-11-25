@@ -74,8 +74,33 @@ export const SelectGameModal = ({
 
           <button
             className="bg-[var(--color-accent-light)] text-[var(--color-brand)] cursor-pointer py-2 px-6 rounded-xl w-full text-center text-lg font-medium transition-all hover:scale-103 mt-4"
-            onClick={() => {
+            onClick={async () => {
+              const token = import.meta.env.VITE_MY_SERVICE_TOKEN;
+
               if (gameInfo.playerName && gameInfo.selectedGame) {
+                const reqSavePlayer = await fetch('https://eco-kids-backend.onrender.com/players/', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'x-service-key': token,
+                  },
+                  body: JSON.stringify({
+                    name: data.playerName,
+                  }),
+                });
+
+                if (!reqSavePlayer.ok) {
+                  setShowToast?.({
+                    show: true,
+                    typeToast: 'error',
+                    message: 'Este nome já está em uso. Por favor, escolha outro.',
+                  });
+                  return;
+                }
+
+                const newPlayer = await reqSavePlayer.json();
+                setData({ ...data, id: newPlayer.id });
+
                 setShowModal(false);
                 navigate('/jogo-ecokids');
               } else {

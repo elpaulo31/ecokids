@@ -3,21 +3,24 @@ import { createContext, useContext, useState } from 'react';
 
 interface PlayerContextType {
   data: {
+    id: string;
     playerName: string;
     score: number;
     achievements: string[];
   };
-  setData: (newData: { playerName: string; score: number; achievements: string[] }) => void;
+  setData: (newData: { id: string; playerName: string; score: number; achievements: string[] }) => void;
 }
 
 const PlayerContext = createContext<PlayerContextType | undefined>(undefined);
 
 export function PlayerProvider({ children }: { children: ReactNode }) {
   const [data, setData] = useState<{
+    id: string;
     playerName: string;
     score: number;
     achievements: string[];
   }>({
+    id: '',
     playerName: '',
     score: 0,
     achievements: [],

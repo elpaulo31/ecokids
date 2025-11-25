@@ -3,9 +3,26 @@ import { usePlayerContext } from '../contexts/PlayerContext';
 import { FinishIcon } from '../assets/images/icons/FinishIcon';
 import { ScoreIcon } from '../assets/images/icons/ScoreIcon';
 import { TimerIcon } from '../assets/images/icons/TimerIcon';
+import { useEffect } from 'react';
 
 export const ScoreEcokids = () => {
   const { data } = usePlayerContext();
+
+  useEffect(() => {
+    async function getRanking() {
+      const token = import.meta.env.VITE_MY_SERVICE_TOKEN;
+
+      await fetch('https://eco-kids-backend.onrender.com/players/ranking', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-service-key': token,
+        },
+      });
+    }
+
+    getRanking();
+  }, []);
 
   return (
     <main className="flex flex-col p-6 sm:px-10 sm:py-3 transition-colors duration-500 bg-transparent">
