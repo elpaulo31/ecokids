@@ -16,16 +16,13 @@ export const ScoreEcokids = () => {
     async function getRanking() {
       const token = import.meta.env.VITE_MY_SERVICE_TOKEN;
 
-      const reqRanking = await fetch(
-        'https://eco-kids-backend.onrender.com/players/ranking',
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'x-service-key': token,
-          },
-        }
-      );
+      const reqRanking = await fetch('https://eco-kids-backend.onrender.com/players/ranking', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-service-key': token,
+        },
+      });
 
       const resRanking = await reqRanking.json();
       setRankingData(resRanking);
@@ -36,7 +33,6 @@ export const ScoreEcokids = () => {
 
   return (
     <main className="flex flex-col p-6 sm:px-10 sm:py-3 transition-colors duration-500 bg-transparent">
-
       <h1 className="text-[var(--color-brand-darkest)] text-3xl md:text-4xl font-bold mb-6 dark:text-[var(--color-accent-light)]">
         Pontuação
       </h1>
@@ -46,8 +42,6 @@ export const ScoreEcokids = () => {
         dark:bg-[var(--color-brand-darkest)] dark:border-[var(--color-brand)]/40 
         dark:shadow-[inset_0_0_8px_rgba(0,164,19,0.4)] transition-colors duration-500"
       >
-
-        {/* Cabeçalhos (apenas desktop) */}
         <div className="hidden md:grid md:grid-cols-[30%_20%_1fr] items-center mb-4 pb-2 border-b border-[var(--color-brand)]/30">
           <h2 className="text-lg font-semibold text-[var(--color-brand-darkest)] dark:text-[var(--color-accent-light)]">
             Jogador
@@ -61,7 +55,6 @@ export const ScoreEcokids = () => {
         </div>
 
         <ul className="flex flex-col gap-6">
-
           {rankingData ? (
             rankingData.map((player, index) => (
               <li
@@ -77,8 +70,8 @@ export const ScoreEcokids = () => {
                         index === 0
                           ? 'text-yellow-500'
                           : index === 1
-                          ? 'text-gray-400'
-                          : 'text-amber-700'
+                            ? 'text-gray-400'
+                            : 'text-amber-700'
                       }
                     >
                       {index + 1}.
@@ -87,12 +80,10 @@ export const ScoreEcokids = () => {
                   <span className="w-10/12 truncate">{player.name}</span>
                 </div>
 
-                {/* Pontos */}
                 <div className="text-[var(--color-brand-darkest)] dark:text-[var(--color-accent-light)] font-medium">
                   {player.points} pontos
                 </div>
 
-                {/* Conquistas */}
                 <div className="flex flex-wrap items-center gap-3">
                   {player.achievements.length > 0 ? (
                     player.achievements.map((achievement, i) => (
@@ -133,13 +124,8 @@ export const ScoreEcokids = () => {
           ) : (
             <p>Carregando...</p>
           )}
-
         </ul>
-
       </section>
     </main>
   );
 };
-
-
-

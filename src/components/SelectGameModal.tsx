@@ -82,16 +82,19 @@ export const SelectGameModal = ({
               if (gameInfo.playerName && gameInfo.selectedGame) {
                 setLoading(true);
 
-                const reqSavePlayer = await fetch('https://eco-kids-backend.onrender.com/players/', {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json',
-                    'x-service-key': token,
+                const reqSavePlayer = await fetch(
+                  'https://eco-kids-backend.onrender.com/players/',
+                  {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'x-service-key': token,
+                    },
+                    body: JSON.stringify({
+                      name: data.playerName,
+                    }),
                   },
-                  body: JSON.stringify({
-                    name: data.playerName,
-                  }),
-                });
+                );
 
                 if (!reqSavePlayer.ok) {
                   setShowToast?.({

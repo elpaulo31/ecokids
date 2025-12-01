@@ -8,7 +8,12 @@ interface PlayerContextType {
     score: number;
     achievements: string[];
   };
-  setData: (newData: { id: string; playerName: string; score: number; achievements: string[] }) => void;
+  setData: (newData: {
+    id: string;
+    playerName: string;
+    score: number;
+    achievements: string[];
+  }) => void;
 }
 
 const PlayerContext = createContext<PlayerContextType | undefined>(undefined);
