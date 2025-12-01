@@ -26,6 +26,7 @@ export const CongratulationsEcokids = ({ player, score }: CongratulationsEcokids
         body: JSON.stringify({
           playerId: data.id,
           points: data.score,
+          achievements: data.achievements,
         }),
       });
 

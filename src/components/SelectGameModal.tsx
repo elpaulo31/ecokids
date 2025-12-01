@@ -1,6 +1,7 @@
 import SelectGame from './../assets/images/general/selectGame.png';
 import { usePlayerContext } from '../contexts/PlayerContext';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 interface SelectGameModalProps {
   showModal: boolean;
@@ -28,6 +29,7 @@ export const SelectGameModal = ({
 
   const navigate = useNavigate();
   const { data, setData } = usePlayerContext();
+  const [loading, setLoading] = useState(false);
 
   return (
     <div
@@ -78,6 +80,8 @@ export const SelectGameModal = ({
               const token = import.meta.env.VITE_MY_SERVICE_TOKEN;
 
               if (gameInfo.playerName && gameInfo.selectedGame) {
+                setLoading(true);
+
                 const reqSavePlayer = await fetch('https://eco-kids-backend.onrender.com/players/', {
                   method: 'POST',
                   headers: {
@@ -101,6 +105,8 @@ export const SelectGameModal = ({
                 const newPlayer = await reqSavePlayer.json();
                 setData({ ...data, id: newPlayer.id });
 
+                setLoading(false);
+
                 setShowModal(false);
                 navigate('/jogo-ecokids');
               } else {
@@ -112,7 +118,7 @@ export const SelectGameModal = ({
               }
             }}
           >
-            Iniciar Jogo
+            {loading ? 'Carregando...' : 'Iniciar Jogo'}
           </button>
         </div>
 
