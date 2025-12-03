@@ -55,6 +55,7 @@ export const EcokidsGame = () => {
   const [isSoundOn, setIsSoundOn] = useState(true);
   const [gameOver, setGameOver] = useState(false);
   const [scoreEffects, setScoreEffects] = useState<{ id: number; x: number; y: number }[]>([]);
+  const [errorEffects, setErrorEffects] = useState<{ id: number; x: number; y: number }[]>([]);
 
   const audioRef = useRef<HTMLAudioElement>(null);
   const hitSoundRef = useRef<HTMLAudioElement>(null);
@@ -155,6 +156,16 @@ export const EcokidsGame = () => {
         }
       } else {
         setErrors((prev) => prev + 1);
+
+        if (e) {
+          const rect = (e.target as HTMLElement).getBoundingClientRect();
+          const id = Date.now();
+          setErrorEffects((prev) => [...prev, { id, x: rect.x + rect.width / 2, y: rect.y }]);
+
+          setTimeout(() => {
+            setErrorEffects((prev) => prev.filter((fx) => fx.id !== id));
+          }, 1000);
+        }
       }
       setSelectedEmoji(null);
     }
@@ -244,6 +255,20 @@ export const EcokidsGame = () => {
           }}
         >
           +1
+        </span>
+      ))}
+
+      {errorEffects.map((fx) => (
+        <span
+          key={fx.id}
+          className="absolute z-50 text-red-500 font-bold text-3xl animate-float-up pointer-events-none"
+          style={{
+            left: fx.x,
+            top: fx.y,
+            transform: 'translate(-50%, -50%)',
+          }}
+        >
+          -1
         </span>
       ))}
 

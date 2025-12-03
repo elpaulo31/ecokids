@@ -102,6 +102,8 @@ export const SelectGameModal = ({
                     typeToast: 'error',
                     message: 'Este nome já está em uso. Por favor, escolha outro.',
                   });
+
+                  setLoading(false);
                   return;
                 }
 
